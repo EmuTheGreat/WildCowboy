@@ -1,14 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TargetManager : MonoBehaviour
 {
-    public GameObject targetPrefab; // Префаб мишени
-    public BoxCollider2D spawnArea; // Коллайдер, внутри которого будет появляться мишень
+    public GameObject targetPrefab; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public BoxCollider2D spawnArea; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private GameObject currentTarget;
     public HoldButton button;
     public bool canSpawn = false;
     public float targetLifetime = 5f;
+    public GameObject hpEnemy;
+    public EnemyTurnEffect enemyTurnEffect;
+    public GameController controller;
+    public AudioSource audioFireSource;
 
 
     public float minSpawnDelay = 1f;
@@ -27,7 +32,7 @@ public class TargetManager : MonoBehaviour
     {
         canSpawn = false;
 
-        // Ждем случайное время
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
 
@@ -69,13 +74,41 @@ public class TargetManager : MonoBehaviour
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D hit = Physics2D.OverlapPoint(mousePosition, LayerMask.GetMask("Target"));
-
-        return (hit?.gameObject.tag) switch
+        if (audioFireSource != null)
+            audioFireSource.Play();
+        switch (hit?.gameObject.tag)
         {
-            "Inner" => true,
-            "Middle" => true,
-            "Outer" => true,
-            _ => false,
+            case "Inner":
+                {
+                    Hit(3);
+                    CheckLife();
+                    controller.enemyStep = true;
+                    enemyTurnEffect.PlayEnemyTurnEffect();
+                    return true;
+                }
+            case "Middle":
+                {
+                    Hit(2);
+                    CheckLife();
+                    controller.enemyStep = true;
+                    enemyTurnEffect.PlayEnemyTurnEffect();
+                    return true;
+                }
+            case "Outer":
+                {
+                    Hit(1);
+                    CheckLife();
+                    controller.enemyStep = true;
+                    enemyTurnEffect.PlayEnemyTurnEffect();
+                    return true;
+                }
+            default:
+                {
+                    CheckLife();
+                    controller.enemyStep = true;
+                    enemyTurnEffect.PlayEnemyTurnEffect();
+                    return false;
+                }
         };
     }
 
@@ -85,7 +118,27 @@ public class TargetManager : MonoBehaviour
         {
             Destroy(currentTarget);
             currentTarget = null;
-            Debug.Log("Мишень скрыта.");
+        }
+    }
+
+    private void CheckLife()
+    {
+        if (hpEnemy.transform.childCount == 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void Hit(int damage)
+    {
+        int hpCount = hpEnemy.transform.childCount;
+        int damageToApply = Mathf.Min(damage, hpCount); // РќРµ Р±РѕР»СЊС€Рµ, С‡РµРј РµСЃС‚СЊ HP
+        int lastIndex = hpEnemy.transform.childCount - 1; // РћР±РЅРѕРІР»СЏРµРј РєР°Р¶РґС‹Р№ СЂР°Р·, С‚Р°Рє РєР°Рє РґРѕС‡РµСЂРЅРёРµ РѕР±СЉРµРєС‚С‹ РёСЃС‡РµР·Р°СЋС‚
+
+
+        for (int i = 0; i < damageToApply; i++)
+        {
+            Destroy(hpEnemy.transform.GetChild(lastIndex--).gameObject);
         }
     }
 }

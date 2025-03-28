@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Header("References")]
     public TextMeshProUGUI feedbackText;
     public TargetManager targetManager;
+    public GameController gameController;
 
     public bool isHolding = false;
     public bool isTooEarly = false;
@@ -25,13 +27,15 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        isHolding = true;
-        isTooEarly = true;
-        initialPressPosition = eventData.position;
-        holdTimer = 0f;
-        isTargetActive = false;
-        targetManager.canSpawn = true;
-        targetManager.Spawn();
+        if (!gameController.enemyStep) {
+            isHolding = true;
+            isTooEarly = true;
+            initialPressPosition = eventData.position;
+            holdTimer = 0f;
+            isTargetActive = false;
+            targetManager.canSpawn = true;
+            targetManager.Spawn();
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
