@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class TargetManager : MonoBehaviour
 {
-    public GameObject targetPrefab; // ������ ������
-    public BoxCollider2D spawnArea; // ���������, ������ �������� ����� ���������� ������
+    public GameObject targetPrefab; 
+    public BoxCollider2D spawnArea; 
     private GameObject currentTarget;
     public HoldButton button;
     public bool canSpawn = false;
@@ -31,8 +31,6 @@ public class TargetManager : MonoBehaviour
     IEnumerator SpawnTarget()
     {
         canSpawn = false;
-
-        // ���� ��������� �����
         float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
 
@@ -40,14 +38,21 @@ public class TargetManager : MonoBehaviour
         {
             Vector2 spawnPosition = GetRandomPosition();
             currentTarget = Instantiate(targetPrefab, spawnPosition, Quaternion.identity);
+
+            // ===== Инициализируем прогресс-бар =====
+            var lifetimeUI = currentTarget.GetComponent<TargetLifetimeUI>();
+            if (lifetimeUI != null)
+                lifetimeUI.Init(targetLifetime);
+            // ========================================
+
             button.isTooEarly = false;
             button.isTargetActive = true;
+
+            // Уничтожить через время (и полоска сама остановится)
+            Destroy(currentTarget, targetLifetime);
         }
 
-        Destroy(currentTarget, targetLifetime);
-
         canSpawn = true;
-
     }
     private Vector2 GetRandomPosition()
     {
