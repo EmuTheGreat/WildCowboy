@@ -15,8 +15,8 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void OpenLevel1()
+    public void PerksMenu()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }
