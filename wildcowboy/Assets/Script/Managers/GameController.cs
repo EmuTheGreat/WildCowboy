@@ -8,13 +8,20 @@ public class GameController : MonoBehaviour
     public GameObject hpEnemy;
     public GameObject hpSelf;
     public bool enemyStep = false;
+    public int[] unlockLevels;
 
 
     private void FixedUpdate()
     {
         if (hpSelf.transform.childCount == 0 || hpEnemy.transform.childCount == 0)
         {
-            SceneManager.LoadScene("MainMenu");
+            foreach (var levelNumber in unlockLevels)
+            {
+                ProgressManager.UnlockLevel(levelNumber);
+            }
+
+
+            SceneManager.LoadScene("SelectLevel");
         }
     }
 }

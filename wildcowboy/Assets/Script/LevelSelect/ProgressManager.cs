@@ -11,6 +11,9 @@ public static class ProgressManager
 
     public static bool IsLevelUnlocked(int levelNumber)
     {
-        return PlayerPrefs.GetInt(LevelKeyPrefix + levelNumber, levelNumber == 1 ? 1 : 0) == 1;
+        // Уровень 0 всегда разблокирован
+        if (levelNumber == 0) return true;
+
+        return PlayerPrefs.GetInt(LevelKeyPrefix + levelNumber, 0) == 1;
     }
 }
