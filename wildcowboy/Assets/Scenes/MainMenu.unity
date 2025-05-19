@@ -454,7 +454,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+  m_Text: 
 --- !u!222 &373287874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -871,8 +871,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: -188}
-  m_SizeDelta: {x: 370.47, y: 69.46}
+  m_AnchoredPosition: {x: 16, y: -170}
+  m_SizeDelta: {x: 379.56, y: 124.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &899752399
 MonoBehaviour:
@@ -938,8 +938,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c070ecefc48218b4182eb7b704865807, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
