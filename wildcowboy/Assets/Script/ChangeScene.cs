@@ -7,12 +7,12 @@ public class ChangeScene : MonoBehaviour
 {
     public void OpenLevelMenu()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("SelectLevel");
     }
 
     public void OpenMainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OpenLevel1()
