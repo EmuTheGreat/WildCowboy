@@ -17,11 +17,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private HealthBarDisplay hpEnemyDisplay;
     [SerializeField] private HealthBarDisplay hpSelfDisplay;
 
-    public int hpSelfCount = 100;
+    public int hpSelfCount;
 
     public bool enemyStep = false;
     public int[] unlockLevels;
-
 
     private void Awake()
     {
@@ -29,9 +28,13 @@ public class GameController : MonoBehaviour
         hpEnemyDisplay = hpEnemy.GetComponent<HealthBarDisplay>();
         Debug.Log(hpEnemyDisplay is not null);
         hpSelfDisplay = hpSelf.GetComponent<HealthBarDisplay>();
+        hpSelfCount = PlayerPrefs.HasKey("PlayerHealth") ? PlayerPrefs.GetInt("PlayerHealth") : 100;
 
         hpEnemyDisplay.SetMaxHealth(EnemyHealth);
         hpSelfDisplay.SetMaxHealth(hpSelfCount);
+
+
+
 
         UpdateHealthDisplays();
     }
