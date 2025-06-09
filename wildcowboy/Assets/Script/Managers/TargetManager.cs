@@ -35,10 +35,22 @@ public class TargetManager : MonoBehaviour
         float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
 
+
+
         if (button != null && button.isHolding)
         {
             Vector2 spawnPosition = GetRandomPosition();
             currentTarget = Instantiate(targetPrefab, spawnPosition, Quaternion.identity);
+            float perk = PlayerPrefs.GetInt("Perk_Accuracy");
+
+            //Debug.Log($"мишень {currentTarget.GetComponent<SmoothShrink>()!=null}");
+            var shrink = currentTarget.GetComponent<SmoothShrink>();
+            // вычисляем новое значение
+            float newSpeed = Mathf.Max(shrink.shrinkSpeed - 0.2f * perk, 0f);
+            // присваиваем
+            shrink.shrinkSpeed = newSpeed;
+
+            //Debug.Log($"[Before] target name={currentTarget.name}, shrinkSpeed={shrink.shrinkSpeed}, perk={perk}");
 
             // ===== Инициализируем прогресс-бар =====
             var lifetimeUI = currentTarget.GetComponent<TargetLifetimeUI>();
@@ -53,9 +65,6 @@ public class TargetManager : MonoBehaviour
             Destroy(currentTarget, targetLifetime);
         }
 
-
-        Debug.Log(tutorialButton != null);
-        Debug.Log(tutorialButton.isHolding);
         if (tutorialButton != null && tutorialButton.isHolding)
         {
             Debug.Log("Спавнится");

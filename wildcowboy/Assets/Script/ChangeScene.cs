@@ -10,6 +10,11 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("SelectLevel");
     }
 
+    public void PerksSelect()
+    {
+        SceneManager.LoadScene("PerksSelect");
+    }
+
     public void OpenMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
