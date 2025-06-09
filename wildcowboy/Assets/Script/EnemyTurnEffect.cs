@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
+
 public class EnemyTurnEffect : MonoBehaviour
 {
     public Image blackOverlay;        // —юда перетаскиваешь затемн€ющий Image
@@ -11,8 +12,6 @@ public class EnemyTurnEffect : MonoBehaviour
     public AudioSource audioSource;   // —юда перетаскиваешь AudioSource со звуком
     public AudioSource audioFireSource;
     public GameController gameController;
-    public GameObject hpSelf;
-    public GameObject hpEnemy;
 
     private void Start()
     {
@@ -28,18 +27,8 @@ public class EnemyTurnEffect : MonoBehaviour
         }
     }
 
-
-    private void CheckLife()
-    {
-        if (hpEnemy.transform.childCount == 1)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-    }
-
     public void PlayEnemyTurnEffect()
     {
-        CheckLife();
         StartCoroutine(PlayEffectRoutine());
         gameController.enemyStep = false;
     }
@@ -60,7 +49,8 @@ public class EnemyTurnEffect : MonoBehaviour
         yield return StartCoroutine(FadeImage(0.7f, 0f));
         if (audioFireSource != null)
             audioFireSource.Play();
-        Hit(Random.Range(0, 3));
+
+        gameController.DamageSelf(Random.Range(gameController.EnemyDamage, gameController.EnemyDamage + gameController.EnemyDamage*30/100));
 
     }
 
@@ -79,18 +69,4 @@ public class EnemyTurnEffect : MonoBehaviour
 
         blackOverlay.color = new Color(color.r, color.g, color.b, to);
     }
-
-    private void Hit(int damage)
-    {
-        int hpCount = hpSelf.transform.childCount;
-        int damageToApply = Mathf.Min(damage, hpCount); // Ќе больше, чем есть HP
-        int lastIndex = hpSelf.transform.childCount - 1; // ќбновл€ем каждый раз, так как дочерние объекты исчезают
-
-
-        for (int i = 0; i < damageToApply; i++)
-        {
-            Destroy(hpSelf.transform.GetChild(lastIndex--).gameObject);
-        }
-    }
-
 }

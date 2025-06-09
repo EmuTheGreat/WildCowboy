@@ -9,6 +9,7 @@ public class InitializationParams : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("PlayerDamage", PlayerDamage);
         PlayerPrefs.SetInt("PlayerHealth", PlayerHealth);
     }

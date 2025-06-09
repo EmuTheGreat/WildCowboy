@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private int EnemyHealth;
-    [SerializeField] private int EnemyDamage;
+    public int EnemyHealth;
+    public int EnemyDamage;
     [SerializeField] private float TargetLifeTime;
     [SerializeField] private float TargetSize;
 
@@ -28,13 +28,12 @@ public class GameController : MonoBehaviour
         hpEnemyDisplay = hpEnemy.GetComponent<HealthBarDisplay>();
         Debug.Log(hpEnemyDisplay is not null);
         hpSelfDisplay = hpSelf.GetComponent<HealthBarDisplay>();
+
+        Debug.Log(PlayerPrefs.HasKey("PlayerHealth") ? "Ключ есть": "Ключа нет");
         hpSelfCount = PlayerPrefs.HasKey("PlayerHealth") ? PlayerPrefs.GetInt("PlayerHealth") : 100;
 
         hpEnemyDisplay.SetMaxHealth(EnemyHealth);
         hpSelfDisplay.SetMaxHealth(hpSelfCount);
-
-
-
 
         UpdateHealthDisplays();
     }
@@ -76,7 +75,7 @@ public class GameController : MonoBehaviour
         hpSelfDisplay.UpdateDisplay(hpSelfCount);
     }
 
-    private void UpdateHealthDisplays()
+    public void UpdateHealthDisplays()
     {
         hpEnemyDisplay.UpdateDisplay(EnemyHealth);
         hpSelfDisplay.UpdateDisplay(hpSelfCount);
