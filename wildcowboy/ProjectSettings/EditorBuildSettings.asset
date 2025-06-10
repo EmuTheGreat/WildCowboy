@@ -17,11 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PerksSelect.unity
     guid: 91d48b6c3c818994c8b73824043f0c38
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutorial/Tutorial.unity
+    guid: ae80d244acc642243b3671ac508af75f
   - enabled: 0
     path: Assets/Scenes/Levels/Level_0.unity
     guid: 6dab417174835664ea7d3d608f1cf621
   - enabled: 0
-    path: Assets/Scenes/Levels/Level_1.unity
+    path: Assets/Scenes/Level_1.unity
     guid: 010d26bff0f8dcd49b7bab00cd04e62e
   - enabled: 0
     path: Assets/Scenes/Levels/Level_2.unity

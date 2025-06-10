@@ -34,8 +34,8 @@ public class GameController : MonoBehaviour
     {
         //DebugPerks();
 
-        VictoryBox.SetActive(false);
-        LossBox.SetActive(false);
+        if (VictoryBox != null) VictoryBox.SetActive(false);
+        if(LossBox != null) LossBox.SetActive(false);
 
         Debug.Log(hpEnemy.name);
         hpEnemyDisplay = hpEnemy.GetComponent<HealthBarDisplay>();

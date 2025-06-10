@@ -19,7 +19,7 @@ public class TutorialHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUp
     public TargetManager targetManager;
     public GameController gameController;
     public GameObject targetPrefab;
-    public Button selectLevel;
+    public GameObject selectLevel;
 
     [Header("UI для туториала")]
     public TextMeshProUGUI tutorialText;
