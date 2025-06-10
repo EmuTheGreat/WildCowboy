@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TargetManager : MonoBehaviour
 {
@@ -111,6 +112,7 @@ public class TargetManager : MonoBehaviour
 
         var damage = PlayerPrefs.GetInt("PlayerDamage");
 
+        Debug.Log("Кобура" + $"{button.GetComponent<Button>().interactable != null}");
         if (audioFireSource != null)
             audioFireSource.Play();
         switch (hit?.gameObject.tag)
@@ -120,6 +122,7 @@ public class TargetManager : MonoBehaviour
                     controller.DamageEnemy(damage + damage * 30 / 100);
                     controller.UpdateHealthDisplays();
                     controller.enemyStep = true;
+                    button.GetComponent<Button>().interactable = false;
                     enemyTurnEffect.PlayEnemyTurnEffect();
                     return true;
                 }
@@ -128,6 +131,7 @@ public class TargetManager : MonoBehaviour
                     controller.DamageEnemy(damage + damage * 10 / 100);
                     controller.UpdateHealthDisplays();
                     controller.enemyStep = true;
+                    button.GetComponent<Button>().interactable = false;
                     enemyTurnEffect.PlayEnemyTurnEffect();
                     return true;
                 }
@@ -136,11 +140,13 @@ public class TargetManager : MonoBehaviour
                     controller.DamageEnemy(damage);
                     controller.UpdateHealthDisplays();
                     controller.enemyStep = true;
+                    button.GetComponent<Button>().interactable = false;
                     enemyTurnEffect.PlayEnemyTurnEffect();
                     return true;
                 }
             default:
                 {
+                    button.GetComponent<Button>().interactable = false;
                     controller.enemyStep = true;
                     enemyTurnEffect.PlayEnemyTurnEffect();
                     return false;

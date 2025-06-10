@@ -3716,11 +3716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c947421a5ed0984bb839b5e2e779ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHealth: 100
-  EnemyDamage: 10
+  EnemyHealth: 200
+  EnemyDamage: 50
   TargetLifeTime: 0
   TargetSize: 0
-  ExperiencePoints: 100
+  ExperiencePoints: 225
   VictoryBox: {fileID: 1363857868}
   LossBox: {fileID: 1432570529}
   targetManager: {fileID: 1157631342}
@@ -3730,7 +3730,7 @@ MonoBehaviour:
   hpSelfDisplay: {fileID: 1373555581}
   hpSelfCount: 100
   enemyStep: 0
-  unlockLevels: 04000000
+  unlockLevels: 07000000
   hasWon: 0
   victoryText: {fileID: 1831435053}
 --- !u!4 &1977575823

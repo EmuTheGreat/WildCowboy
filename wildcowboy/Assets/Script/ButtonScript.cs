@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -25,7 +26,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!gameController.enemyStep) {
+        if (GetComponent<Button>().interactable && !gameController.enemyStep) {
             isHolding = true;
             isTooEarly = true;
             initialPressPosition = eventData.position;
@@ -40,7 +41,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
 
         Debug.Log($"{targetManager.IsCursorOverTarget()}");
-        if (isTargetActive && targetManager != null && targetManager.IsCursorOverTarget())
+        if (GetComponent<Button>().interactable && isTargetActive && targetManager != null && targetManager.IsCursorOverTarget())
         {
             feedbackText.text = "HIT!";
             feedbackText.color = Color.green;

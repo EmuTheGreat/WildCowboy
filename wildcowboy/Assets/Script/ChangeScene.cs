@@ -24,4 +24,9 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+    
+    public void ClearPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

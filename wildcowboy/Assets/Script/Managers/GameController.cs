@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject LossBox;
 
 
-    [SerializeField] private TargetManager targetManager;
+    [SerializeField] public TargetManager targetManager;
 
     public GameObject hpEnemy;
     public GameObject hpSelf;
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
     public bool enemyStep = false;
     public int[] unlockLevels;
 
+    public bool hasWon = false;
 
     public TMP_Text victoryText;
 
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour
         //DebugPerks();
 
         if (VictoryBox != null) VictoryBox.SetActive(false);
-        if(LossBox != null) LossBox.SetActive(false);
+        if (LossBox != null) LossBox.SetActive(false);
 
         Debug.Log(hpEnemy.name);
         hpEnemyDisplay = hpEnemy.GetComponent<HealthBarDisplay>();
@@ -63,33 +65,45 @@ public class GameController : MonoBehaviour
         //PlayerPrefs.SetInt("Exp_Point", 100);
     }
 
-    private void FixedUpdate()
-    {
-        Debug.Log(EnemyHealth);
-        if (EnemyHealth <= 0)
-        {
-            foreach (var levelNumber in unlockLevels)
-            {
-                ProgressManager.UnlockLevel(levelNumber);
-            }
-
-            var exp = PlayerPrefs.GetInt("Exp_Point");
-            PlayerPrefs.SetInt("Exp_Point", exp + ExperiencePoints);
-
-            victoryText.text = $"+{ExperiencePoints} очков опыта";
-            VictoryBox.SetActive(true);
-        }
-
-        if (hpSelfCount <= 0)
-        {
-            LossBox.SetActive(true);
-        }
-    }
 
     public void DamageEnemy(int amount)
     {
         EnemyHealth = Mathf.Max(EnemyHealth - (amount + 5 * PlayerPrefs.GetInt("Perk_Reaction")), 0);
         hpEnemyDisplay.UpdateDisplay(EnemyHealth);
+
+        if (EnemyHealth <= 0)
+        {
+            HandleVictory();
+        }
+    }
+    private void HandleVictory()
+    {
+        if (hasWon) return;
+        hasWon = true;
+
+        foreach (var levelNumber in unlockLevels)
+        {
+            ProgressManager.UnlockLevel(levelNumber);
+        }
+
+        var exp = PlayerPrefs.GetInt("Exp_Point");
+        PlayerPrefs.SetInt("Exp_Point", exp + ExperiencePoints);
+
+        victoryText.text = $"+{ExperiencePoints} очков опыта";
+        BlockButton();
+        VictoryBox.SetActive(true);
+    }
+
+    private void HandleLoss()
+    {
+        BlockButton();
+        LossBox.SetActive(true);
+    }
+
+    private void BlockButton()
+    {
+        Debug.Log(" нопка " + targetManager.button.GetComponent<Button>()!=null);
+        targetManager.button.GetComponent<Button>().interactable = false;
     }
 
     public void DamageSelf(int amount)
@@ -97,6 +111,11 @@ public class GameController : MonoBehaviour
         var damage = Math.Abs(amount - 3 * PlayerPrefs.GetInt("Perk_Armor"));
         hpSelfCount = Mathf.Max(hpSelfCount - damage, 0);
         hpSelfDisplay.UpdateDisplay(hpSelfCount);
+
+        if (hpSelfCount <= 0)
+        {
+            HandleLoss();
+        }
     }
 
     public void HealEnemy(int amount)

@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 500877661}
   - component: {fileID: 500877660}
   - component: {fileID: 500877659}
+  - component: {fileID: 500877662}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -755,7 +756,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 500877660}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 500877662}
+        m_TargetAssemblyTypeName: PerksButton, Assembly-CSharp
+        m_MethodName: UpgradePerk
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Perk_Reaction
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &500877660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +807,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500877657}
   m_CullTransparentMesh: 1
+--- !u!114 &500877662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500877657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6dd7e72b0f2cb4ea6bc086e84f82fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Manager: {fileID: 1565276981}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1760,7 @@ MonoBehaviour:
   TextReaction: {fileID: 902467575}
   TextArmor: {fileID: 753059063}
   TextAccuracy: {fileID: 1765425251}
+  TextExp: {fileID: 967052524}
 --- !u!1 &1604854795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1932,7 @@ GameObject:
   - component: {fileID: 1842813957}
   - component: {fileID: 1842813956}
   - component: {fileID: 1842813955}
+  - component: {fileID: 1842813958}
   m_Layer: 5
   m_Name: Button (Legacy) (1)
   m_TagString: Untagged
@@ -1975,7 +2003,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1842813956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1842813958}
+        m_TargetAssemblyTypeName: PerksButton, Assembly-CSharp
+        m_MethodName: UpgradePerk
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Perk_Armor
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1842813956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,6 +2054,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842813953}
   m_CullTransparentMesh: 1
+--- !u!114 &1842813958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842813953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6dd7e72b0f2cb4ea6bc086e84f82fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Manager: {fileID: 1565276981}
 --- !u!1 &1863172707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,6 +2079,7 @@ GameObject:
   - component: {fileID: 1863172711}
   - component: {fileID: 1863172710}
   - component: {fileID: 1863172709}
+  - component: {fileID: 1863172712}
   m_Layer: 5
   m_Name: Button (Legacy) (2)
   m_TagString: Untagged
@@ -2096,7 +2150,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1863172710}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1863172712}
+        m_TargetAssemblyTypeName: PerksButton, Assembly-CSharp
+        m_MethodName: UpgradePerk
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Perk_Accuracy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1863172710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,6 +2201,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863172707}
   m_CullTransparentMesh: 1
+--- !u!114 &1863172712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863172707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6dd7e72b0f2cb4ea6bc086e84f82fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Manager: {fileID: 1565276981}
 --- !u!1 &1985429556
 GameObject:
   m_ObjectHideFlags: 0

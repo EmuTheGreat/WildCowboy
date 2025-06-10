@@ -29,8 +29,12 @@ public class EnemyTurnEffect : MonoBehaviour
 
     public void PlayEnemyTurnEffect()
     {
-        StartCoroutine(PlayEffectRoutine());
-        gameController.enemyStep = false;
+        if (!gameController.hasWon)
+        {
+            StartCoroutine(PlayEffectRoutine());
+            gameController.enemyStep = false;
+        }
+        gameController.targetManager.button.GetComponent<Button>().interactable = true;
     }
 
     private IEnumerator PlayEffectRoutine()
@@ -50,7 +54,7 @@ public class EnemyTurnEffect : MonoBehaviour
         if (audioFireSource != null)
             audioFireSource.Play();
 
-        gameController.DamageSelf(Random.Range(gameController.EnemyDamage, gameController.EnemyDamage + gameController.EnemyDamage*30/100));
+        gameController.DamageSelf(Random.Range(gameController.EnemyDamage, gameController.EnemyDamage + gameController.EnemyDamage * 30 / 100));
 
     }
 

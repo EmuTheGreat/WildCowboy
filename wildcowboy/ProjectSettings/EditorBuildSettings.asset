@@ -18,21 +18,42 @@ EditorBuildSettings:
     path: Assets/Scenes/PerksSelect.unity
     guid: 91d48b6c3c818994c8b73824043f0c38
   - enabled: 1
-    path: Assets/Scenes/Levels/Tutorial/Tutorial.unity
+    path: Assets/Scenes/Levels/Tutorial/Level_0.unity
     guid: ae80d244acc642243b3671ac508af75f
   - enabled: 0
     path: Assets/Scenes/Levels/Level_0.unity
     guid: 6dab417174835664ea7d3d608f1cf621
-  - enabled: 0
-    path: Assets/Scenes/Level_1.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_1.unity
     guid: 010d26bff0f8dcd49b7bab00cd04e62e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Level_2.unity
-    guid: 778d3a8732453344cba87823167df73a
-  - enabled: 0
+    guid: 6314e45bfb93e8349b9b3f81ecbe8f5b
+  - enabled: 1
     path: Assets/Scenes/Levels/Level_3.unity
-    guid: 4af187cf4bce9c949b4806b66a6af61f
-  - enabled: 0
+    guid: 7c17471cacb95014a97157189dcda2dd
+  - enabled: 1
     path: Assets/Scenes/Levels/Level_4.unity
-    guid: c64bd522a111ab240866eb7f9b6cb08d
+    guid: 7f5769a76dd0e8b42ab2c7e12b6fe8b7
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_5.unity
+    guid: 1e1a51f1f9ef5884f8ef4751ef652e45
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_6.unity
+    guid: dacd4be8d8ccab446a83bb2234f06870
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_7.unity
+    guid: c0478375f1fd40c4c8d9a28d89cb34af
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_8.unity
+    guid: feec5b5ebbc82384081db728ca4aa1a8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_9.unity
+    guid: 183bd194c7915e84b8707489ddc985a3
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_10.unity
+    guid: 7c62a796e58c99d41a38143ef2367c2c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level_11.unity
+    guid: d14d0a3a7c1325f4db7eebfb8bc31f9a
   m_configObjects: {}
