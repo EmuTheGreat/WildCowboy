@@ -112,7 +112,6 @@ public class TargetManager : MonoBehaviour
 
         var damage = PlayerPrefs.GetInt("PlayerDamage");
 
-        Debug.Log("Кобура" + $"{button.GetComponent<Button>().interactable != null}");
         if (audioFireSource != null)
             audioFireSource.Play();
         switch (hit?.gameObject.tag)
